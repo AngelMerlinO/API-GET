@@ -16,7 +16,6 @@
     "build:tsc": "tsc -p tsconfig.prod.json",
     "sonar": "sonar-scanner"
   },
-  
   "keywords": [
     "typescript",
     "express",
@@ -28,9 +27,8 @@
     "node": ">=18.0.0",
     "npm": ">=9.3.0"
   },
-  "bugs": {
-  },
-  "homepage":"",
+  "bugs": {},
+  "homepage": "",
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
