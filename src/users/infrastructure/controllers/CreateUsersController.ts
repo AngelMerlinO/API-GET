@@ -1,29 +1,29 @@
 import { Request, Response } from "express";
 
-import { CreateProductUseCase } from "../../application/CreateProductUseCase";
-//import { Product } from "../../domain/Product";
+import { CreateUsersUseCase } from "../../application/CreateUsersUseCase";
+//import { Users } from "../../domain/Users";
 
-export class CreateProductController {
-  constructor(readonly createProductUseCase: CreateProductUseCase) {}
+export class CreateUsersController {
+  constructor(readonly createUsersUseCase: CreateUsersUseCase) {}
 
   async run(req: Request, res: Response) {
     const data = req.body;
     try {
-      const product = await this.createProductUseCase.run(
+      const users = await this.createUsersUseCase.run(
         data.name,
-        data.description,
-        data.price
+        data.password,
+        data.mail
       );
 
-      if (product)
+      if (users)
         //Code HTTP : 201 -> Creado
         res.status(201).send({
           status: "success",
           data: {
-            id: product?.id,
-            name: product?.name,
-            description: product?.description,
-            price: product?.price,
+            id: users?.id,
+            name: users?.name,
+            password: users?.password,
+            mail: users?.mail,
           },
         });
       else
