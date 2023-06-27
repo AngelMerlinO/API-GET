@@ -16,10 +16,7 @@
     "build:tsc": "tsc -p tsconfig.prod.json",
     "sonar": "sonar-scanner"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlbertHernandez/express-typescript-service-skeleton.git"
-  },
+  
   "keywords": [
     "typescript",
     "express",
@@ -32,9 +29,8 @@
     "npm": ">=9.3.0"
   },
   "bugs": {
-    "url": "https://github.com/AlbertHernandez/express-typescript-service-skeleton/issues"
   },
-  "homepage": "https://github.com/AlbertHernandez/express-typescript-service-skeleton#readme",
+  "homepage":"",
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
