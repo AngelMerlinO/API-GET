@@ -15,7 +15,7 @@ const rabbitSettings = {
 
 export class MysqlUsersRepository implements UsersRepository {
   async getAll(): Promise<Users[] | null> {
-    const sql = "SELECT * FROM movies";
+    const sql = "SELECT * FROM users";
     try {
       const [data]: any = await query(sql, []);
       const dataUserss = Object.values(JSON.parse(JSON.stringify(data)));
