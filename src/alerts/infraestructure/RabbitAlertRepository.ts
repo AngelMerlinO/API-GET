@@ -50,4 +50,44 @@ export class RabbitAlertRepository implements AlertRepository {
       return null;
     }
   }
+
+
+  async updateAlert(
+    id: number,
+    status: number
+  ): Promise<any> {
+    try {
+        const estado = {
+            id,
+            status
+        };
+        (async () => {
+        const queue = "Updates";
+        const message = JSON.stringify(estado);// Mensaje a insertar en la cola
+      
+        try {
+          const conn = await amqp.connect(rabbitSettings);
+          console.log('Conexión exitosa');
+      
+          const channel = await conn.createChannel();
+          console.log('Canal creado exitosamente');
+      
+          const res = await channel.assertQueue(queue);
+          console.log('Cola creada exitosamente', res);
+      
+          // Insertar el mensaje en la cola
+           await channel.sendToQueue(queue, Buffer.from(message));
+      
+          console.log(`Mensaje insertado en la cola: ${message}`);
+      
+        } catch (error) {
+          console.log("🚀 ~ file: consumer.js:28 ~ connect ~ error:", error)
+          throw error;
+        }
+      })();
+      return estado;
+    } catch (error) {
+      return null;
+    }
+  }
 }
