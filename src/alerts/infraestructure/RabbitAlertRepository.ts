@@ -53,18 +53,14 @@ export class RabbitAlertRepository implements AlertRepository {
 
 
   async updateAlert(
-    id: number,
-    status: number
+    id: number
   ): Promise<any> {
     try {
-        const estado = {
-            id,
-            status
-        };
+        const identificador = id;
         (async () => {
         const queue = "Updates";
-        const message = JSON.stringify(estado);// Mensaje a insertar en la cola
-      
+        const message = JSON.stringify(identificador);// Mensaje a insertar en la cola
+
         try {
           const conn = await amqp.connect(rabbitSettings);
           console.log('Conexión exitosa');
@@ -85,7 +81,7 @@ export class RabbitAlertRepository implements AlertRepository {
           throw error;
         }
       })();
-      return estado;
+      return identificador;
     } catch (error) {
       return null;
     }

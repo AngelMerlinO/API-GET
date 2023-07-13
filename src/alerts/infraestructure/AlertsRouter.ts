@@ -5,5 +5,5 @@ import { createAlertController } from "./dependencies";
 
 export const alertsRouter = express.Router();
 
-alertsRouter.update("/", updateAlertController.run.bind(updateAlertController));
+alertsRouter.put("/", updateAlertController.run.bind(updateAlertController));
 alertsRouter.post("/", createAlertController.run.bind(createAlertController));

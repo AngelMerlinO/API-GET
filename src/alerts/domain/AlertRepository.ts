@@ -9,7 +9,6 @@ export interface AlertRepository {
   ): Promise<Alert | null>;
 
   updateAlert(
-    id: number,
-    status: number
+    id: number
   ): Promise <any>;
 }

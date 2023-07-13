@@ -9,8 +9,7 @@ export class UpdateAlertController {
     const data = req.body;
     try {
       const estado = await this.updateAlertUseCase.run(
-        data.id,
-        data.status
+        data.id
       );
 
       if (estado)
@@ -18,8 +17,7 @@ export class UpdateAlertController {
         res.status(201).send({
           status: "success",
           data: {
-            id: estado?.id,
-            status: estado?.status
+            id: estado?.id
           },
         });
       else

@@ -4,13 +4,11 @@ export class UpdateAlertUseCase {
   constructor(readonly alertRepository: AlertRepository) {}
 
   async run(
-    id : number,
-    status: number
+    id : number
   ): Promise<any> {
     try {
       const estado = await this.alertRepository.updateAlert(
-        id,
-        status
+        id
       );
       return estado;
     } catch (error) {
