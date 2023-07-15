@@ -1,7 +1,9 @@
 import { Alert } from "../domain/Alert";
 import { AlertRepository } from "../domain/AlertRepository";
 import amqp from 'amqplib';
+import io from 'socket.io-client';
 
+const socket = io('http://localhost:4000'); //corregir a la IP donde esté desplegado el socket
 
 const rabbitSettings = {
   protocol: 'amqp',
@@ -21,6 +23,7 @@ export class RabbitAlertRepository implements AlertRepository {
   ): Promise<Alert | null> {
     try {
         const alert = new Alert(affectedUserId,type,description,severity);
+        socket.emit('alert', alert);
         (async () => {
         const queue = "Alertas";
         const message = JSON.stringify(alert);// Mensaje a insertar en la cola
