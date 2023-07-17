@@ -1,14 +1,14 @@
 import { CreateUsersUseCase } from "../application/CreateUsersUseCase";
-import { GetAllUsersUseCase } from "../application/GetAllUsersUseCase";
+import { LoginUseCase } from "../application/LoginUseCase";
 import { CreateUsersController } from "./controllers/CreateUsersController";
-import { GetAllUsersController } from "./controllers/GetAllUsersController";
+import { LoginUserController } from "./controllers/LoginUserController";
 import { MysqlUsersRepository } from "./MysqlUsersRepository";
 
 export const mysqlUsersRepository = new MysqlUsersRepository();
 export const createUsersUseCase = new CreateUsersUseCase(mysqlUsersRepository);
-export const getAllUseCase = new GetAllUsersUseCase(mysqlUsersRepository);
+export const loginUseCase = new LoginUseCase(mysqlUsersRepository);
 
 export const createUsersController = new CreateUsersController(
   createUsersUseCase
 );
-export const getAllUsersController = new GetAllUsersController(getAllUseCase);
+export const loginUserController = new LoginUserController(loginUseCase);

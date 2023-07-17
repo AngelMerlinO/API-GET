@@ -9,7 +9,7 @@ const rabbitSettings = {
   protocol: 'amqp',
   hostname: '34.199.194.98',//'34.232.106.165'darinel,
   port: 5672,
-  username: 'angel',
+  mail: 'angel',
   password: 'angel',
 };
 
