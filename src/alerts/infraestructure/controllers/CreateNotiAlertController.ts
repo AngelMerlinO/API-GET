@@ -1,29 +1,33 @@
 import { Request, Response } from "express";
-import { UpdateAlertUseCase } from "../../application/UpdateAlertUseCase";
+import { CreateNotiAlertUseCase } from "../../application/CreateNotiAlertUseCase";
 
 
-export class UpdateAlertController {
-  constructor(readonly updateAlertUseCase: UpdateAlertUseCase,) {}
+export class CreateNotiAlertController {
+  constructor(readonly createNotiAlertUseCase: CreateNotiAlertUseCase) {}
 
   async run(req: Request, res: Response) {
     const data = req.body;
     try {
-      const id = await this.updateAlertUseCase.run(
-        data.id
+      const alert = await this.createNotiAlertUseCase.run(
+        data.affectedUserId,
+        data.description,
+        data.severity,
       );
 
-      if (id)
+      if (alert)
         //Code HTTP : 201 -> Creado
         res.status(201).send({
           status: "success",
           data: {
-            id
+            affectedUserId: alert?.affectedUserId,
+            description: alert?.description,
+            severity: alert?.severity
           },
         });
       else
         res.status(204).send({
           status: "error",
-          data: "NO fue posible actualizar el registro",
+          data: "NO fue posible mandar la notificación",
         });
     } catch (error) {
       //Code HTTP : 204 Sin contenido

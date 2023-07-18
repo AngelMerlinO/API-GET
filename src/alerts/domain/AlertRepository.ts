@@ -11,4 +11,10 @@ export interface AlertRepository {
   updateAlert(
     id: number
   ): Promise <any>;
+
+  createNotiAlert(
+    affectedUserId: number,
+    description: string,
+    severity: string
+  ): Promise <any>
 }
